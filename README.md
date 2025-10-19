@@ -98,6 +98,7 @@ Custlysis is a full-stack banking analytics platform that provides banks with po
 4. **Run Backend**
    ```bash
    cd Custlysis
+   mvn clean compile
    mvn spring-boot:run
    ```
 
