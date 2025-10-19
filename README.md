@@ -304,8 +304,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 👥 Authors
 
 - **Development Team** - *Initial work* - 
-[GitHub Profile](https://github.com/Pulkitjakhmola)
-[GitHub Profile](https://github.com/rahulkandwal19)
+[Pulkit Jakhmola (github profile)](https://github.com/Pulkitjakhmola)
+[Rahul Kandwal (github profile)](https://github.com/rahulkandwal19)
 
 ## 🙏 Acknowledgments
 
