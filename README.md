@@ -303,7 +303,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 👥 Authors
 
-- **Development Team** - *Initial work* - 
+- **Development Team** - *Initial work* - <br>
 [Pulkit Jakhmola (github profile)](https://github.com/Pulkitjakhmola)  <br>
 [Rahul Kandwal (github profile)](https://github.com/rahulkandwal19)
 
