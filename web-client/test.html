@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custlysis API Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .test-section {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .result {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            padding: 15px;
+            margin-top: 10px;
+            white-space: pre-wrap;
+            font-family: monospace;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        .error {
+            background: #f8d7da;
+            border-color: #f5c6cb;
+            color: #721c24;
+        }
+        .success {
+            background: #d4edda;
+            border-color: #c3e6cb;
+            color: #155724;
+        }
+    </style>
+</head>
+<body>
+    <h1>🏦 Custlysis API Test</h1>
+    
+    <div class="test-section">
+        <h2>1. Backend Connection Test</h2>
+        <button onclick="testConnection()">Test API Connection</button>
+        <div id="connectionResult" class="result" style="display: none;"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>2. Database Test</h2>
+        <button onclick="testCustomers()">Get Customers</button>
+        <button onclick="testAccounts()">Get Accounts</button>
+        <button onclick="testProducts()">Get Products</button>
+        <button onclick="testTransactions()">Get Transactions</button>
+        <div id="dataResult" class="result" style="display: none;"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>3. CRUD Test</h2>
+        <button onclick="testCreateCustomer()">Create Test Customer</button>
+        <button onclick="testUpdateCustomer()">Update Customer</button>
+        <button onclick="testDeleteCustomer()">Delete Test Customer</button>
+        <div id="crudResult" class="result" style="display: none;"></div>
+    </div>
+
+    <script>
+        const API_BASE_URL = 'http://localhost:9090/api';
+        let testCustomerId = null;
+
+        async function apiCall(endpoint, options = {}) {
+            try {
+                const response = await fetch(`${API_BASE_URL}${endpoint}`, {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        ...options.headers
+                    },
+                    ...options
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+                
+                return await response.json();
+            } catch (error) {
+                throw error;
+            }
+        }
+
+        function showResult(elementId, message, isError = false) {
+            const element = document.getElementById(elementId);
+            element.style.display = 'block';
+            element.className = `result ${isError ? 'error' : 'success'}`;
+            element.textContent = message;
+        }
+
+        async function testConnection() {
+            try {
+                const response = await fetch(`${API_BASE_URL}/customers`);
+                if (response.ok) {
+                    showResult('connectionResult', '✅ Backend is running and accessible!');
+                } else {
+                    showResult('connectionResult', `❌ Backend responded with status: ${response.status}`, true);
+                }
+            } catch (error) {
+                showResult('connectionResult', `❌ Cannot connect to backend: ${error.message}\n\nMake sure your Spring Boot application is running on port 9090.`, true);
+            }
+        }
+
+        async function testCustomers() {
+            try {
+                const customers = await apiCall('/customers');
+                showResult('dataResult', `✅ Found ${customers.length} customers:\n\n${JSON.stringify(customers.slice(0, 3), null, 2)}`);
+            } catch (error) {
+                showResult('dataResult', `❌ Error fetching customers: ${error.message}`, true);
+            }
+        }
+
+        async function testAccounts() {
+            try {
+                const accounts = await apiCall('/accounts');
+                showResult('dataResult', `✅ Found ${accounts.length} accounts:\n\n${JSON.stringify(accounts.slice(0, 3), null, 2)}`);
+            } catch (error) {
+                showResult('dataResult', `❌ Error fetching accounts: ${error.message}`, true);
+            }
+        }
+
+        async function testProducts() {
+            try {
+                const products = await apiCall('/products');
+                showResult('dataResult', `✅ Found ${products.length} products:\n\n${JSON.stringify(products.slice(0, 3), null, 2)}`);
+            } catch (error) {
+                showResult('dataResult', `❌ Error fetching products: ${error.message}`, true);
+            }
+        }
+
+        async function testTransactions() {
+            try {
+                const transactions = await apiCall('/transactions');
+                showResult('dataResult', `✅ Found ${transactions.length} transactions:\n\n${JSON.stringify(transactions.slice(0, 3), null, 2)}`);
+            } catch (error) {
+                showResult('dataResult', `❌ Error fetching transactions: ${error.message}`, true);
+            }
+        }
+
+        async function testCreateCustomer() {
+            try {
+                const customerData = {
+                    name: 'Test Customer ' + Date.now(),
+                    location: 'Test City',
+                    occupation: 'Tester',
+                    incomeBracket: '₹60K-₹80K',
+                    digitalScore: 85.5,
+                    riskProfile: 'Low',
+                    preferredLanguage: 'English',
+                    tenureDays: 0,
+                    churnRiskScore: 15.0
+                };
+                
+                const result = await apiCall('/customers', {
+                    method: 'POST',
+                    body: JSON.stringify(customerData)
+                });
+                
+                testCustomerId = result.customerId;
+                showResult('crudResult', `✅ Customer created successfully:\n\n${JSON.stringify(result, null, 2)}`);
+            } catch (error) {
+                showResult('crudResult', `❌ Error creating customer: ${error.message}`, true);
+            }
+        }
+
+        async function testUpdateCustomer() {
+            if (!testCustomerId) {
+                showResult('crudResult', '❌ Please create a test customer first!', true);
+                return;
+            }
+            
+            try {
+                const updateData = {
+                    name: 'Updated Test Customer',
+                    location: 'Updated City',
+                    occupation: 'Senior Tester',
+                    incomeBracket: '₹80K-₹100K',
+                    digitalScore: 90.0,
+                    riskProfile: 'Low',
+                    preferredLanguage: 'English',
+                    tenureDays: 30,
+                    churnRiskScore: 10.0
+                };
+                
+                const result = await apiCall(`/customers/${testCustomerId}`, {
+                    method: 'PUT',
+                    body: JSON.stringify(updateData)
+                });
+                
+                showResult('crudResult', `✅ Customer updated successfully:\n\n${JSON.stringify(result, null, 2)}`);
+            } catch (error) {
+                showResult('crudResult', `❌ Error updating customer: ${error.message}`, true);
+            }
+        }
+
+        async function testDeleteCustomer() {
+            if (!testCustomerId) {
+                showResult('crudResult', '❌ Please create a test customer first!', true);
+                return;
+            }
+            
+            try {
+                await apiCall(`/customers/${testCustomerId}`, {
+                    method: 'DELETE'
+                });
+                
+                showResult('crudResult', `✅ Customer ${testCustomerId} deleted successfully!`);
+                testCustomerId = null;
+            } catch (error) {
+                showResult('crudResult', `❌ Error deleting customer: ${error.message}`, true);
+            }
+        }
+
+        // Auto-test connection on page load
+        window.addEventListener('load', testConnection);
+    </script>
+</body>
+</html>
