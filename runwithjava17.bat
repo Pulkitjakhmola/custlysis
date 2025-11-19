@@ -1,4 +1,4 @@
-@echo off
+ri@echo off
 REM Set Java 17 for this project only
 REM Update this path to match your Java 17 installation
 REM Common locations:
