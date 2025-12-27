@@ -2,31 +2,31 @@
 
 A comprehensive **Customer Analysis and Management System** designed specifically for banking institutions to analyze customer behavior, manage accounts, and optimize banking operations through data-driven insights.
 
-## 🏦 Overview
+##  Overview
 
 Custlysis is a full-stack banking analytics platform that provides banks with powerful tools to understand their customers, manage accounts efficiently, and make informed business decisions. The system combines customer demographics, account management, transaction analysis, and product recommendations in a unified dashboard.
 
-## ✨ Key Features
+##  Key Features
 
-### 📊 **Customer Analytics Dashboard**
+###  **Customer Analytics Dashboard**
 - Real-time customer demographics and behavior analysis
 - Digital score tracking and risk profiling
 - Churn risk assessment and customer segmentation
 - Geographic clustering and location-based insights
 
-### 💳 **Account Management**
+###  **Account Management**
 - Multi-account support (Checking, Savings, Investment)
 - Balance tracking with Indian Rupee (₹) currency support
 - Overdraft management and dormancy monitoring
 - Channel preference analysis (Online, Mobile, ATM, Branch)
 
-### 💰 **Transaction Management**
+###  **Transaction Management**
 - Comprehensive transaction history and analysis
 - Real-time transaction monitoring
 - Merchant category tracking
 - High-value and recurring transaction identification
 
-### 🎯 **Product Management**
+###  **Product Management**
 - Banking product catalog management
 - Risk-based product categorization
 - Eligibility rules and rating system
@@ -61,7 +61,7 @@ Custlysis is a full-stack banking analytics platform that provides banks with po
 - **Features**: Auto-generated schemas, foreign key relationships
 - **Data**: Pre-populated with realistic Indian banking data
 
-## 🚀 Quick Start
+##  Quick Start
 
 ### Prerequisites
 - Java 17 or higher
@@ -108,7 +108,7 @@ Custlysis is a full-stack banking analytics platform that provides banks with po
    # Or serve via local web server
    ```
 
-## 📁 Project Structure
+##  Project Structure
 
 ```
 custlysis/
@@ -155,7 +155,7 @@ custlysis/
 - `GET /api/transactions` - Get all transactions
 - `POST /api/transactions` - Create new transaction
 
-## 💡 Key Features in Detail
+##  Key Features in Detail
 
 ### Customer Analytics
 - **Digital Score**: Measures customer's digital engagement (0-100)
@@ -175,14 +175,14 @@ custlysis/
 - **Pattern Recognition**: Recurring and high-value detection
 - **Geographic Tracking**: Location-based transaction analysis
 
-## 🔒 Security Features
+##  Security Features
 
 - Input validation and sanitization
 - SQL injection prevention via JPA
 - CORS configuration for secure API access
 - Error handling and logging
 
-## 📊 Sample Data
+##  Sample Data
 
 The system comes pre-loaded with:
 - **50+ Customer Records** with realistic Indian demographics
@@ -205,7 +205,7 @@ The system comes pre-loaded with:
 ### Transaction History
 ![Transactions](screenshots/transactions.png)
 
-## 🚀 Getting Started Guide
+##  Getting Started Guide
 
 ### Step 1: Environment Setup
 1. Install Java 17+ and Maven
@@ -228,7 +228,7 @@ mvn spring-boot:run
 1. Open `web-client/index.html` in your browser
 2. The application will connect to `http://localhost:9090`
 
-## 🔧 Configuration
+##  Configuration
 
 ### Database Configuration
 ```properties
@@ -245,14 +245,14 @@ spring.jpa.hibernate.ddl-auto=update
 const API_BASE_URL = 'http://localhost:9090/api';
 ```
 
-## 📈 Performance Features
+##  Performance Features
 
 - **Lazy Loading**: Efficient data loading for large datasets
 - **Pagination**: Built-in pagination for customer and transaction lists
 - **Caching**: JPA second-level caching for improved performance
 - **Indexing**: Database indexes on frequently queried fields
 
-## 🧪 Testing
+##  Testing
 
 ### Backend Testing
 ```bash
@@ -266,7 +266,7 @@ Use the included test file `web-client/test.html` to test API endpoints:
 - CRUD operations testing
 - Data validation testing
 
-## 🐛 Troubleshooting
+##  Troubleshooting
 
 ### Common Issues
 
@@ -284,7 +284,7 @@ Use the included test file `web-client/test.html` to test API endpoints:
    - Check browser console for CORS errors
    - Ensure API endpoints are accessible
 
-## 🤝 Contributing
+##  Contributing
 
 1. Fork the repository
 2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
@@ -298,17 +298,18 @@ Use the included test file `web-client/test.html` to test API endpoints:
 - Add comments for complex logic
 - Test your changes thoroughly
 
-## 📝 License
+##  License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 👥 Authors
+##  Authors
 
 - **Development Team** - *Initial work* - <br>
 [Pulkit Jakhmola (github profile)](https://github.com/Pulkitjakhmola)  <br>
-[Rahul Kandwal (github profile)](https://github.com/rahulkandwal19)
+[Rahul Kandwal (github profile)](https://github.com/rahulkandwal19)   <br>
+[Rachit Bangwal (github profile)](https://github.com/rachitbangwal)
 
-## 🙏 Acknowledgments
+##  Acknowledgments
 
 - Built for banking industry customer analysis needs
 - Designed with Indian banking context and currency
@@ -317,7 +318,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - Spring Boot community for excellent framework
 - MySQL for reliable database management
 
-## 📞 Support
+##  Support
 
 For support and questions:
 - Create an issue in this repository
